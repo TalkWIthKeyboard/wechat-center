@@ -11,9 +11,9 @@ app.config.from_object(Config())
 app.secret_key = 'wechat-center'
 db = MongoEngine(app)
 
-scheduler = APScheduler()
-scheduler.init_app(app)
-scheduler.start()
+# scheduler = APScheduler()
+# scheduler.init_app(app)
+# scheduler.start()
 
 # module
 from app.module.Token import Token
