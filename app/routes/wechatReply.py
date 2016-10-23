@@ -10,7 +10,7 @@ from config import WECHAT_TOKEN
 REPLY = "<xml>{}</xml>"
 Articles = "<Articles>{}</Articles>"
 
-PIC_TEXT_REPLY_HEADER =  "<ToUserName><![CDATA[％s]]></ToUserName> "\
+PIC_TEXT_REPLY_HEADER =  "<ToUserName><![CDATA[%s]]></ToUserName> "\
                             "<FromUserName><![CDATA[%s]]></FromUserName> " \
                             "<CreateTime>%s</CreateTime> " \
                             "<MsgType><![CDATA[news]]></MsgType>" \
@@ -67,7 +67,6 @@ def replyUser(xml):
     ToUserName = xml.find('ToUserName').text
     FromUserName = xml.find('FromUserName').text
     Content = xml.find('Content').text
-    print Content
 
     if Content == u'功能':
         header = PIC_TEXT_REPLY_HEADER % (FromUserName, ToUserName, int(time.time()) , 1)
@@ -79,3 +78,5 @@ def replyUser(xml):
 
     print content
     return content
+
+
