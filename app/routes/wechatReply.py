@@ -39,7 +39,6 @@ def wechat_auth():
     :return: 封装xml的response
     '''
     if request.method == 'GET':
-        print 'hello'
         token = WECHAT_TOKEN
         query = request.args
         signature = query.get('signature', '')
@@ -67,7 +66,7 @@ def replyUser(xml):
     '''
     ToUserName = xml.find('ToUserName').text
     FromUserName = xml.find('FromUserName').text
-    Content = xml.find('content').text
+    Content = xml.find('Content').text
 
     if Content == '功能':
         header = PIC_TEXT_REPLY_HEADER % (FromUserName, ToUserName, int(time.time()) , 1)
