@@ -69,7 +69,7 @@ def replyUser(xml):
     Content = xml.find('Content').text
 
     if Content == u'功能':
-        header = PIC_TEXT_REPLY_HEADER % (FromUserName, ToUserName, int(time.time()) , 1)
+        header = PIC_TEXT_REPLY_HEADER % (FromUserName, ToUserName, str(int(time.time())) , str(1))
         item = PIC_TEXT_REPLY_ITEM % ('山塘街',
                                       '山塘街东起阊门渡僧桥，西至苏州名胜虎丘山的望山桥，长约七里，所以苏州俗语说“七里山塘到虎丘”...',
                                       'http://thinkshare.duapp.com/images/suzhou.jpg',
