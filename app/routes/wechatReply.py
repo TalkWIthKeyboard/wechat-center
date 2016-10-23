@@ -18,7 +18,6 @@ PIC_TEXT_REPLY_HEADER =  "<ToUserName><![CDATA[%s]]></ToUserName> "\
 
 PIC_TEXT_REPLY_ITEM = "<item>" \
                         "<Title><![CDATA[%s]]></Title>" \
-                        "<Description><![CDATA[%s]]></Description>" \
                         "<PicUrl><![CDATA[%s]]></PicUrl>" \
                         "<Url><![CDATA[%s]]></Url>" \
                         "</item>"
@@ -68,13 +67,13 @@ def replyUser(xml):
     FromUserName = xml.find('FromUserName').text
     Content = xml.find('Content').text
 
-    if Content == u'功能':
-        header = PIC_TEXT_REPLY_HEADER % (FromUserName, ToUserName, str(int(time.time())) , str(1))
-        item = PIC_TEXT_REPLY_ITEM % ('山塘街',
-                                      '山塘街东起阊门渡僧桥，西至苏州名胜虎丘山的望山桥，长约七里，所以苏州俗语说“七里山塘到虎丘”...',
-                                      'http://thinkshare.duapp.com/images/suzhou.jpg',
-                                      'http://mp.weixin.qq.com/mp/appmsg/show?__biz=MjM5NDM0NTEyMg==&appmsgid=10000046&itemidx=1&sign=9e7707d5615907d483df33ee449b378d#wechat_redirect')
-        content = REPLY.format(header + Articles.format(item))
+    header = PIC_TEXT_REPLY_HEADER % (FromUserName, ToUserName, str(int(time.time())) , str(3))
+    item = ""
+    item += PIC_TEXT_REPLY_ITEM % ('MovieBox | 一个记录你一生观影历程的APP',
+                                  'http://p3.music.126.net/zUE3L4oIPmoyuhdIO_v54w==/3234763210233939.jpg','')
+    item += PIC_TEXT_REPLY_ITEM % ('电影日历','','')
+    item += PIC_TEXT_REPLY_ITEM % ('电影推荐','','')
+    content = REPLY.format(header + Articles.format(item))
 
     print content
     return content
