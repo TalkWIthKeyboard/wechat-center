@@ -18,9 +18,8 @@ scheduler.start()
 # module
 from app.module.Token import Token
 
-
-
-
+# routes
+from app.routes import wechatReply
 
 
 

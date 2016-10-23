@@ -17,3 +17,4 @@ class Token(db.Document):
             expires_in=self.expires_in,
             createTime=self.createTime
         )
+
