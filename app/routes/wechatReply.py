@@ -78,7 +78,7 @@ def replyUser(xml,output):
 
         header = PIC_TEXT_REPLY_HEADER % (FromUserName, ToUserName, str(int(time.time())) , str(3))
         item = ""
-        item += PIC_TEXT_REPLY_ITEM % ('MovieBox | 一个记录你一生观影历程的APP','',
+        item += PIC_TEXT_REPLY_ITEM % ('MovieBox | 记录你一生观影历程','',
                                       'http://p3.music.126.net/zUE3L4oIPmoyuhdIO_v54w==/3234763210233939.jpg','')
         item += PIC_TEXT_REPLY_ITEM % ('电影日历','','','')
         item += PIC_TEXT_REPLY_ITEM % ('电影推荐','','','')
