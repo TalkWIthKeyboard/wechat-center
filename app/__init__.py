@@ -19,7 +19,7 @@ db = MongoEngine(app)
 from app.module.Token import Token
 
 # routes
-# from app.routes import wechatReply
+from app.routes import wechatReply
 
 
 

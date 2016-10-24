@@ -18,10 +18,10 @@ PIC_TEXT_REPLY_HEADER =  "<ToUserName><![CDATA[%s]]></ToUserName> "\
                             "<ArticleCount>%s</ArticleCount>"
 
 PIC_TEXT_REPLY_ITEM = "<item>" \
-                        "<Title><![CDATA[title1]]></Title>" \
-                        "<Description><![CDATA[description1]]></Description>" \
-                        "<PicUrl><![CDATA[picurl]]></PicUrl>" \
-                        "<Url><![CDATA[url]]></Url>" \
+                        "<Title><![CDATA[%s]]></Title>" \
+                        "<Description><![CDATA[%s]]></Description>" \
+                        "<PicUrl><![CDATA[%s]]></PicUrl>" \
+                        "<Url><![CDATA[%s]]></Url>" \
                         "</item>"
 
 TEXT_REPLY =   "<ToUserName><![CDATA[%s]]></ToUserName>" \
@@ -50,11 +50,11 @@ def wechat_auth():
         s = [timestamp,nonce,token]
         s.sort()
         s = ''.join(s)
+        output.close()
         if (hashlib.sha1(s).hexdigest() == signature):
             return echostr
     else:
         xml_recv = ET.fromstring(request.data)
-        print 'hahah'
         content = replyUser(xml_recv,output)
         response = make_response(content)
         response.content_type = 'application/xml'
@@ -75,11 +75,10 @@ def replyUser(xml,output):
 
         output.writelines('ToUserName:' + str(ToUserName))
         output.writelines('FromUserName:' + str(FromUserName))
-        output.writelines('Content:' + str(Content))
 
         header = PIC_TEXT_REPLY_HEADER % (FromUserName, ToUserName, str(int(time.time())) , str(3))
         item = ""
-        item += PIC_TEXT_REPLY_ITEM % ('MovieBox | 一个记录你一生观影历程的APP',''
+        item += PIC_TEXT_REPLY_ITEM % ('MovieBox | 一个记录你一生观影历程的APP','',
                                       'http://p3.music.126.net/zUE3L4oIPmoyuhdIO_v54w==/3234763210233939.jpg','')
         item += PIC_TEXT_REPLY_ITEM % ('电影日历','','','')
         item += PIC_TEXT_REPLY_ITEM % ('电影推荐','','','')
@@ -90,4 +89,7 @@ def replyUser(xml,output):
 
     except Exception,e:
         output.writelines('error: ' + str(e.message))
+
+
+
 
