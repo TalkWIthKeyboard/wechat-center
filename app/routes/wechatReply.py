@@ -17,9 +17,10 @@ PIC_TEXT_REPLY_HEADER =  "<ToUserName><![CDATA[%s]]></ToUserName> "\
                             "<ArticleCount>%s</ArticleCount>"
 
 PIC_TEXT_REPLY_ITEM = "<item>" \
-                        "<Title><![CDATA[%s]]></Title>" \
-                        "<PicUrl><![CDATA[%s]]></PicUrl>" \
-                        "<Url><![CDATA[%s]]></Url>" \
+                        "<Title><![CDATA[title1]]></Title>" \
+                        "<Description><![CDATA[description1]]></Description>" \
+                        "<PicUrl><![CDATA[picurl]]></PicUrl>" \
+                        "<Url><![CDATA[url]]></Url>" \
                         "</item>"
 
 TEXT_REPLY =   "<ToUserName><![CDATA[%s]]></ToUserName>" \
@@ -51,6 +52,7 @@ def wechat_auth():
             return echostr
     else:
         xml_recv = ET.fromstring(request.data)
+        print 'hahah'
         content = replyUser(xml_recv)
         response = make_response(content)
         response.content_type = 'application/xml'
@@ -63,19 +65,23 @@ def replyUser(xml):
     :param xml:微信过来的xml
     :return: 返回给用户的xml
     '''
-    ToUserName = xml.find('ToUserName').text
-    FromUserName = xml.find('FromUserName').text
-    Content = xml.find('Content').text
+    try:
+        ToUserName = xml.find('ToUserName').text
+        FromUserName = xml.find('FromUserName').text
+        Content = xml.find('Content').text
 
-    header = PIC_TEXT_REPLY_HEADER % (FromUserName, ToUserName, str(int(time.time())) , str(3))
-    item = ""
-    item += PIC_TEXT_REPLY_ITEM % ('MovieBox | 一个记录你一生观影历程的APP',
-                                  'http://p3.music.126.net/zUE3L4oIPmoyuhdIO_v54w==/3234763210233939.jpg','')
-    item += PIC_TEXT_REPLY_ITEM % ('电影日历','','')
-    item += PIC_TEXT_REPLY_ITEM % ('电影推荐','','')
-    content = REPLY.format(header + Articles.format(item))
+        header = PIC_TEXT_REPLY_HEADER % (FromUserName, ToUserName, str(int(time.time())) , str(3))
+        item = ""
+        item += PIC_TEXT_REPLY_ITEM % ('MovieBox | 一个记录你一生观影历程的APP',''
+                                      'http://p3.music.126.net/zUE3L4oIPmoyuhdIO_v54w==/3234763210233939.jpg','')
+        item += PIC_TEXT_REPLY_ITEM % ('电影日历','','','')
+        item += PIC_TEXT_REPLY_ITEM % ('电影推荐','','','')
+        content = REPLY.format(header + Articles.format(item))
 
-    print content
-    return content
+        print content
+        return content
+
+    except Exception,e:
+        print e.message
 
 
