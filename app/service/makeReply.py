@@ -22,8 +22,8 @@ def reply_navigation(xml,output):
         item = ""
         item += PIC_TEXT_REPLY_ITEM % ('MovieBox | 记录你一生观影历程','',
                                       'http://p3.music.126.net/zUE3L4oIPmoyuhdIO_v54w==/3234763210233939.jpg','')
-        item += PIC_TEXT_REPLY_ITEM % ('电影日历','','','moviebox.sw77.live/calendar/getCalendar')
-        item += PIC_TEXT_REPLY_ITEM % ('电影记录','','','moviebox.sw77.live/searchPage')
+        item += PIC_TEXT_REPLY_ITEM % ('电影日历','','','moviebox.sw77.live/calendar')
+        item += PIC_TEXT_REPLY_ITEM % ('电影记录','','','moviebox.sw77.live/movies')
         # item += PIC_TEXT_REPLY_ITEM % ('电影推荐','','','')
         content = REPLY.format(header + ARTICLES.format(item))
 
