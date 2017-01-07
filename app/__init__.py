@@ -16,8 +16,4 @@ from app.module.Token import Token
 # routes
 from app.routes import wechatReply
 
-# 定时获取token
-scheduler = APScheduler()
-scheduler.init_app(app)
-scheduler.start()
 

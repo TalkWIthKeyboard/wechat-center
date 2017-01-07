@@ -12,17 +12,3 @@ class Config(object):
         'hosts': '127.0.0.1',
         'port': 27017
     }
-
-    JOBS = [
-
-        # 开启任务扫描(添加到任务列表)
-        {
-            'id': 'job1',
-            'func': 'app.service.getToken:get_token',
-            'args': (),
-            'trigger': {
-                'type': 'interval',
-                'seconds': 7200
-            }
-        }
-    ]
