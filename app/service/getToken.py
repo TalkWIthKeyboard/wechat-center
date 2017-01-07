@@ -4,7 +4,7 @@ import requests
 import json
 from config import TOKEN_URL
 from datetime import datetime
-from app import Token
+from app.module.Token import Token
 
 
 def get_token():

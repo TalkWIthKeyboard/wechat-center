@@ -8,7 +8,7 @@ class Token(db.Document):
         获取最新的token存入数据库
     '''
 
-    token = db.StringField(max_length=1200, required=True)
+    token = db.StringField(required=True)
     createTime = db.DateTimeField(required=True)
     expires_in = db.IntField(required=True)
 
