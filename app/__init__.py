@@ -3,6 +3,7 @@
 from flask import Flask
 from flask_mongoengine import MongoEngine
 from config import Config
+from flask_apscheduler import APScheduler
 
 app = Flask(__name__, static_url_path='')
 app.config.from_object(Config())
@@ -15,5 +16,6 @@ from app.module.Token import Token
 # routes
 from app.routes import wechatReply
 
-
-
+# 通过中控获取token
+scheduler = APScheduler()
+scheduler.add_job('job1', 'app.service.getToken:get_token', args=(), trigger={'type': 'interval', 'seconds': 5})

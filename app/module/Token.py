@@ -2,6 +2,7 @@
 
 from app import db
 
+
 class Token(db.Document):
     '''
         获取最新的token存入数据库
@@ -17,4 +18,3 @@ class Token(db.Document):
             expires_in=self.expires_in,
             createTime=self.createTime
         )
-
